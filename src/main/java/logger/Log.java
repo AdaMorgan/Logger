@@ -3,9 +3,8 @@ package logger;
 import logger.type.Level;
 import logger.type.Status;
 
-import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Arrays;
-import java.util.TimeZone;
 
 public class Log {
     private final int level, status;
@@ -15,12 +14,12 @@ public class Log {
         this.status = status;
     }
 
-    public <R> Message<R> setContent(R content) {
-        return new Message<>(content);
+    public LocalTime getTime() {
+        return LocalTime.now();
     }
 
-    public void setTime() {
-
+    public Thread setThread() {
+        return Thread.currentThread();
     }
 
     public Level getLevel() {
@@ -35,5 +34,9 @@ public class Log {
                 .filter(value -> value.getCode() == this.status)
                 .findFirst()
                 .orElse(null);
+    }
+
+    public <R> Message<R> setContent(R content) {
+        return new Message<>(content);
     }
 }

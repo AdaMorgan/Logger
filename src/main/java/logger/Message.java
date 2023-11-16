@@ -1,6 +1,5 @@
 package logger;
 
-import logger.type.Level;
 import org.jetbrains.annotations.NotNull;
 
 public class Message<T> {
@@ -12,6 +11,10 @@ public class Message<T> {
 
     private String formatter() {
         return null;
+    }
+
+    public static @NotNull String setWidth(@NotNull String key, int space) {
+        return key + " ".repeat(space - key.length());
     }
 
     public String reset() {
