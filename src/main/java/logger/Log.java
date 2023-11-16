@@ -2,20 +2,19 @@ package logger;
 
 import logger.type.Level;
 import logger.type.Status;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 
 public class Log {
     private final int level, status;
 
+    public Log(Level level, Status status) {
+        this(level.getCode(), status.getCode());
+    }
+
     public Log(int level, int status) {
         this.level = level;
         this.status = status;
-    }
-
-    public Thread getThread() {
-        return Thread.currentThread();
     }
 
     public Level getLevel() {
@@ -32,7 +31,7 @@ public class Log {
                 .orElse(null);
     }
 
-    public <R> Message<R> setContent(R content) {
-        return new Message<>(this, content).build();
+    public <R> void setContent(R content) {
+        new Message<>(this, content).build();
     }
 }

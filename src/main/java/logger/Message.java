@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalTime;
 
-public class Message<T> implements LogAction {
+public class Message<T> {
     private final Log log;
     private final T message;
 
@@ -23,11 +23,7 @@ public class Message<T> implements LogAction {
     }
 
     private @NotNull String formatted() {
-        return getTime() + " " +
-                getThread() + " " +
-                getLevel() + " " +
-                getStatus() + " " +
-                getMessage();
+        return getTime() + getThread() + getLevel() + getStatus() + getMessage();
     }
 
     private @NotNull String setWidth(@NotNull String key, int length) {
@@ -38,27 +34,22 @@ public class Message<T> implements LogAction {
         return color + key;
     }
 
-    @Override
     public String getTime() {
         return setColor(setWidth(LocalTime.now().toString(), 20), "\u001B[0m");
     }
 
-    @Override
     public String getThread() {
         return setColor(setWidth(Thread.currentThread().getName(), 6), "\u001B[0m");
     }
 
-    @Override
     public String getLevel() {
         return setColor(setWidth(this.log.getLevel().name(), 8), this.log.getLevel().toANSI());
     }
 
-    @Override
     public String getStatus() {
         return setColor(setWidth(this.log.getStatus().name(), 8), this.log.getStatus().toANSI());
     }
 
-    @Override
     public String getMessage() {
         return reset() + this.message;
     }

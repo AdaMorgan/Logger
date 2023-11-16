@@ -3,9 +3,9 @@ package logger.type;
 import java.awt.*;
 
 public enum Status {
-    SUCCESS(1, 0x6AAB73),
-    WARNING(2, 0xE0BB65),
-    FAILED(3, 0xF75464);
+    SUCCESS(0, 0x6AAB73),
+    WARNING(1, 0xE0BB65),
+    FAILED(2, 0xF75464);
 
     private final int code;
     private final int color;
