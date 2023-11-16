@@ -22,4 +22,8 @@ public enum Status {
     public Color getColor() {
         return new Color(color);
     }
+
+    public String toANSI() {
+        return String.format("\u001B[38;2;%d;%d;%dm", getColor().getRed(), getColor().getGreen(), getColor().getBlue());
+    }
 }

@@ -2,8 +2,8 @@ package logger;
 
 import logger.type.Level;
 import logger.type.Status;
+import org.jetbrains.annotations.NotNull;
 
-import java.time.LocalTime;
 import java.util.Arrays;
 
 public class Log {
@@ -14,11 +14,7 @@ public class Log {
         this.status = status;
     }
 
-    public LocalTime getTime() {
-        return LocalTime.now();
-    }
-
-    public Thread setThread() {
+    public Thread getThread() {
         return Thread.currentThread();
     }
 
@@ -37,6 +33,6 @@ public class Log {
     }
 
     public <R> Message<R> setContent(R content) {
-        return new Message<>(content);
+        return new Message<>(this, content).build();
     }
 }
