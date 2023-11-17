@@ -6,35 +6,16 @@ plugins {
 group = 'org.example'
 version = '1.0-SNAPSHOT'
 
-repositories {
-    mavenCentral()
-}
-
-jar {
-    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
-
-    from {
-        configurations.runtimeClasspath.collect {
-            it.isDirectory() ? it : zipTree(it)
-        }
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+        mavenCentral()
     }
 }
 
 java {
     withSourcesJar()
     withJavadocJar()
-}
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            groupId = 'org.github.adamorgan'
-            artifactId = 'logger'
-            version = '0.1'
-
-            from components.java
-        }
-    }
 }
 
 dependencies {
