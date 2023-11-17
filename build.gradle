@@ -20,6 +20,11 @@ publishing {
             version = '1.0-SNAPSHOT' // Update version
 
             from components.java
+
+            pom {
+                name = 'My Library'
+                description = 'A description of my library'
+            }
         }
     }
     repositories {
