@@ -27,6 +27,14 @@ test {
     useJUnitPlatform()
 }
 
+afterEvaluate {
+    publishing.publications.create("logger", MavenPublication) {
+        groupId = "com.github.adamorgan"
+        artifactId = "logger"
+        version = "0.1"
+    }
+}
+
 wrapper {
     gradleVersion '8.0'
     distributionType = Wrapper.DistributionType.ALL
