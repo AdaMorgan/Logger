@@ -2,17 +2,18 @@ package logger;
 
 import logger.type.Level;
 import logger.type.Status;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 
 public class Log {
     private final int level, status;
 
-    public Log(Level level, Status status) {
+    public Log(@NotNull Level level, @NotNull Status status) {
         this(level.getCode(), status.getCode());
     }
 
-    public Log(int level, int status) {
+    private Log(int level, int status) {
         this.level = level;
         this.status = status;
     }

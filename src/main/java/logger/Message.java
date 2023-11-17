@@ -13,9 +13,8 @@ public class Message<T> {
         this.message = message;
     }
 
-    protected Message<T> build() {
+    protected void build() {
         System.out.println(formatted());
-        return this;
     }
 
     private @NotNull String reset() {
@@ -30,7 +29,7 @@ public class Message<T> {
         return key + " ".repeat(length - key.length());
     }
 
-    private String setColor(String key, String color) {
+    private @NotNull String setColor(String key, String color) {
         return color + key;
     }
 

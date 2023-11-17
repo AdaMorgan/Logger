@@ -6,7 +6,8 @@ public enum Level {
     SERVER(1, 0xA771BF),
     CLIENT(0, 0xA771BF),
     DEBUG(2, 0x299999),
-    INFO(3, 0x56A8F5);
+    INFO(3, 0x56A8F5),
+    TRACE(4, 0x11111);
 
     private final int code;
     private final int color;
