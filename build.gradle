@@ -3,19 +3,35 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'org.example'
-version = '1.0-SNAPSHOT'
-
-allprojects {
-    repositories {
-        maven { url "https://jitpack.io" }
-        mavenCentral()
-    }
+repositories {
+    mavenCentral()
 }
 
 java {
     withSourcesJar()
     withJavadocJar()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.github.AdaMorgan' // Update groupId
+            artifactId = 'logger' // Update artifactId
+            version = '1.0-SNAPSHOT' // Update version
+
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url = uri("/.m2/repository") // Specify the Maven repository URL
+        }
+    }
+}
+
+wrapper {
+    gradleVersion '8.0'
+    distributionType = Wrapper.DistributionType.ALL
 }
 
 dependencies {
@@ -25,17 +41,4 @@ dependencies {
 
 test {
     useJUnitPlatform()
-}
-
-afterEvaluate {
-    publishing.publications.create("logger", MavenPublication) {
-        groupId = "com.github.adamorgan"
-        artifactId = "logger"
-        version = "0.1"
-    }
-}
-
-wrapper {
-    gradleVersion '8.0'
-    distributionType = Wrapper.DistributionType.ALL
 }
