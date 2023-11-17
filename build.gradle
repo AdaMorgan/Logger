@@ -10,6 +10,21 @@ repositories {
     mavenCentral()
 }
 
+jar {
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
 publishing {
     publications {
         maven(MavenPublication) {
@@ -20,4 +35,9 @@ publishing {
 
 dependencies {
     implementation 'org.jetbrains:annotations:24.0.0'
+}
+
+wrapper {
+    gradleVersion '8.0'
+    distributionType = Wrapper.DistributionType.ALL
 }
