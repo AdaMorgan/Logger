@@ -25,8 +25,8 @@ public class Message<T> {
         return getTime() + getThread() + getLevel() + getStatus() + getMessage();
     }
 
-    private @NotNull String setWidth(@NotNull String key, int length) {
-        return key + " ".repeat(length - key.length());
+    private @NotNull String setWidth(@NotNull String key) {
+        return key + " ".repeat(10 - key.length());
     }
 
     private @NotNull String setColor(String key, String color) {
@@ -34,19 +34,19 @@ public class Message<T> {
     }
 
     public String getTime() {
-        return setColor(setWidth(LocalTime.now().toString(), 20), "\u001B[0m");
+        return setColor(setWidth(LocalTime.now().toString().split("\\.")[0]), "\u001B[0m");
     }
 
     public String getThread() {
-        return setColor(setWidth(Thread.currentThread().getName(), 6), "\u001B[0m");
+        return setColor(setWidth(Thread.currentThread().getName()), "\u001B[0m");
     }
 
     public String getLevel() {
-        return setColor(setWidth(this.log.getLevel().name(), 8), this.log.getLevel().toANSI());
+        return setColor(setWidth(this.log.getLevel().name()), this.log.getLevel().toANSI());
     }
 
     public String getStatus() {
-        return setColor(setWidth(this.log.getStatus().name(), 8), this.log.getStatus().toANSI());
+        return setColor(setWidth(this.log.getStatus().name()), this.log.getStatus().toANSI());
     }
 
     public String getMessage() {
