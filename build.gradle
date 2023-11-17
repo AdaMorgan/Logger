@@ -28,17 +28,22 @@ java {
 publishing {
     publications {
         mavenJava(MavenPublication) {
+            groupId = 'org.github.adamorgan'
+            artifactId = 'logger'
+            version = '0.1'
+
             from components.java
         }
     }
-    repositories {
-        maven {
-            url "https://jitpack.io"
-        }
-    }
 }
+
 dependencies {
-    implementation 'org.jetbrains:annotations:24.0.0'
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.7.2"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.2"
+}
+
+test {
+    useJUnitPlatform()
 }
 
 wrapper {
