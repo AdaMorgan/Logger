@@ -27,12 +27,16 @@ java {
 
 publishing {
     publications {
-        maven(MavenPublication) {
+        mavenJava(MavenPublication) {
             from components.java
         }
     }
+    repositories {
+        maven {
+            url "https://jitpack.io"
+        }
+    }
 }
-
 dependencies {
     implementation 'org.jetbrains:annotations:24.0.0'
 }
